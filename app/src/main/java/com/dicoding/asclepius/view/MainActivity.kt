@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun analyzeImage(uri: Uri) {
         val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, currentImageUri.toString())
+        intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, uri.toString())
         startActivity(intent)
     }
 
