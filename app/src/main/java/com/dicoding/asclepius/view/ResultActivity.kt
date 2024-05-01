@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.dicoding.asclepius.R
+import com.dicoding.asclepius.application.PredictionHistoryApplication
+import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.ActivityResultBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
+import com.dicoding.asclepius.viewmodel.HistoryViewModelFactory
+import com.dicoding.asclepius.viewmodel.PredictionHistoryViewModel
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.text.NumberFormat
 
@@ -17,6 +22,9 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var imageClassifierHelper: ImageClassifierHelper
 
+    private val historyViewModel: PredictionHistoryViewModel by viewModels {
+        HistoryViewModelFactory((application as PredictionHistoryApplication).repository)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
@@ -51,6 +59,8 @@ class ResultActivity : AppCompatActivity() {
                                 }
                             // Menampilkan hasil klasifikasi dan waktu inferensi
                             binding.resultText.text = "$displayResult\nInference Time: $inferenceTime ms"
+                            saveToHistory(imageUriString.toString(), sortedCategories[0].label, sortedCategories[0].score)
+                            Log.d(TAG, "Result : ${imageUriString.toString()}, ${sortedCategories[0].label}, ${sortedCategories[0].score}")
                         } else {
                             binding.resultText.text = "Empty"
                         }
@@ -65,7 +75,17 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveToHistory(imageUriString: String, label: String, score: Float) {
+        val predictionHistory = PredictionHistory(
+            imagePath = imageUriString,
+            predictionResult = label,
+            confidenceScore = score
+        )
+        historyViewModel.insert(predictionHistory)
+    }
+
     companion object {
+        const val TAG = "ResultActivity"
         const val EXTRA_IMAGE_URI = "extra_image_uri"
         const val EXTRA_RESULT = "extra_result"
     }

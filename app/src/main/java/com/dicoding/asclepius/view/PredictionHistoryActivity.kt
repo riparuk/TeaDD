@@ -45,6 +45,8 @@ class PredictionHistoryActivity : AppCompatActivity() {
         historyViewModel.allHisory.observe(this) {
             it.let { adapter.submitList(it) }
         }
+
+
 //        val dataset = arrayOf("January", "February", "March")
 //        val customAdapter = PredictionHistoryListAdapter(dataset)
 //

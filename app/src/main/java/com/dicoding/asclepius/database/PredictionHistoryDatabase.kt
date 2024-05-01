@@ -52,9 +52,9 @@ abstract class PredictionHistoryDatabase : RoomDatabase() {
             predictionHistoryDao.deleteAll()
 
             // Add sample words.
-            var history = PredictionHistory(1, "PATH", "Cancer", 0.8f)
+            var history = PredictionHistory(id = 1, imagePath = null, predictionResult = "Example1", confidenceScore = 0.8f)
             predictionHistoryDao.insertPredictionHistory(history)
-            history = PredictionHistory(2, "PATH", "Non Cancer", 0.6f)
+            history = PredictionHistory(id = 2, imagePath = null, predictionResult = "Example2", confidenceScore = 0.9f)
             predictionHistoryDao.insertPredictionHistory(history)
 
 

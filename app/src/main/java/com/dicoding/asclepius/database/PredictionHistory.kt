@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class PredictionHistory(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val imagePath: String, // Path file gambar
-    val predictionResult: String, // Hasil prediksi
-    val confidenceScore: Float // Skor kepercayaan
+    val imagePath: String?,
+    val predictionResult: String,
+    val confidenceScore: Float,
+    val insertedAt: Long = System.currentTimeMillis()
 )
