@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
 
+        binding.ivHistory.setOnClickListener{
+            val intent = Intent(this, PredictionHistoryActivity::class.java)
+            startActivity(intent)
+        }
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.analyzeButton.setOnClickListener {
             currentImageUri?.let {
