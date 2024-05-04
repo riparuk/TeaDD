@@ -19,34 +19,17 @@ class MainActivity : AppCompatActivity() {
 
     private var currentImageUri: Uri? = null
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                showToast("Permission request granted")
-            } else {
-                showToast("Permission request denied")
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-
         binding.ivHistory.setOnClickListener{
             val intent = Intent(this, PredictionHistoryActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btArticles.setOnClickListener {
+            val intent = Intent(this, ArticlesActivity::class.java)
             startActivity(intent)
         }
         binding.galleryButton.setOnClickListener { startGallery() }
@@ -92,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+        private const val TAG = "MainActivity"
+        private const val REQUIRED_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
     }
 }

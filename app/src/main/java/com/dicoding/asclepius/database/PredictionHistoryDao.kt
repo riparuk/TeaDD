@@ -10,6 +10,9 @@ interface PredictionHistoryDao {
     @Query("SELECT * FROM predictionhistory ORDER BY id DESC")
     fun getAllPredictionHistory(): Flow<List<PredictionHistory>>
 
+    @Query("SELECT * FROM predictionhistory WHERE id = :id")
+    suspend fun getPredictionHistoryById(id: Long): PredictionHistory?
+
     @Insert
     suspend fun insertPredictionHistory(predictionHistory: PredictionHistory)
 

@@ -66,4 +66,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_history" />
 
+    <Button
+        android:id="@+id/btArticles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Articles"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHistory"
+        app:layout_constraintEnd_toStartOf="@+id/ivHistory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

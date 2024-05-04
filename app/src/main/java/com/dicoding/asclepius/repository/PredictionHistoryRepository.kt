@@ -13,4 +13,10 @@ class PredictionHistoryRepository(private val predictionHistoryDao: PredictionHi
     suspend fun insert(history: PredictionHistory) {
         predictionHistoryDao.insertPredictionHistory(history)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getHistoryById(id: Long): PredictionHistory? {
+        return predictionHistoryDao.getPredictionHistoryById(id)
+    }
 }

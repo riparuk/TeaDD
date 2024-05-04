@@ -1,21 +1,30 @@
 package com.dicoding.asclepius.adapter
 
+import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.PredictionHistoryRowItemBinding
+import com.dicoding.asclepius.view.HistoryDetailActivity
+import com.dicoding.asclepius.view.ResultActivity
 import java.text.NumberFormat
 import java.util.Date
+import kotlin.contracts.contract
 
-class HistoryListAdapter : ListAdapter<PredictionHistory, HistoryListAdapter.HistoryViewHolder>(HistoryComparator()) {
+class HistoryListAdapter(private val listener: OnHistoryItemClickListener) : ListAdapter<PredictionHistory, HistoryListAdapter.HistoryViewHolder>(HistoryComparator()) {
 
+    interface OnHistoryItemClickListener {
+        fun onHistoryItemClicked(history: PredictionHistory)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = PredictionHistoryRowItemBinding.inflate(inflater, parent, false)
@@ -25,10 +34,12 @@ class HistoryListAdapter : ListAdapter<PredictionHistory, HistoryListAdapter.His
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
+        holder.itemView.setOnClickListener {
+            listener.onHistoryItemClicked(current)
+        }
     }
 
     class HistoryViewHolder(private val binding: PredictionHistoryRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(data: PredictionHistory) {
             binding.tvResult.text = data.predictionResult
             binding.tvScore.text = NumberFormat.getPercentInstance()

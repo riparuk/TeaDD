@@ -1,5 +1,6 @@
 package com.dicoding.asclepius.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,7 @@ import com.dicoding.asclepius.R
 import com.dicoding.asclepius.adapter.HistoryListAdapter
 import com.dicoding.asclepius.adapter.PredictionHistoryListAdapter
 import com.dicoding.asclepius.application.PredictionHistoryApplication
+import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.dicoding.asclepius.databinding.ActivityPredictionHistoryBinding
 import com.dicoding.asclepius.databinding.ActivityResultBinding
@@ -20,7 +22,7 @@ import com.dicoding.asclepius.repository.PredictionHistoryRepository
 import com.dicoding.asclepius.viewmodel.HistoryViewModelFactory
 import com.dicoding.asclepius.viewmodel.PredictionHistoryViewModel
 
-class PredictionHistoryActivity : AppCompatActivity() {
+class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHistoryItemClickListener {
     private lateinit var binding: ActivityPredictionHistoryBinding
 
     private val historyViewModel: PredictionHistoryViewModel by viewModels {
@@ -38,7 +40,7 @@ class PredictionHistoryActivity : AppCompatActivity() {
 
     private fun showPredictionHistory() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        val adapter = HistoryListAdapter()
+        val adapter = HistoryListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -59,5 +61,11 @@ class PredictionHistoryActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "Prediction History Activity"
+    }
+
+    override fun onHistoryItemClicked(history: PredictionHistory) {
+        val intent = Intent(this, HistoryDetailActivity::class.java)
+        intent.putExtra(HistoryDetailActivity.EXTRA_HISTORY_ID, history.id)
+        startActivity(intent)
     }
 }
