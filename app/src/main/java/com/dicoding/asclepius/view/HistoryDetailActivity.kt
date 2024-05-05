@@ -1,6 +1,8 @@
 package com.dicoding.asclepius.view
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -8,8 +10,11 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.application.PredictionHistoryApplication
 import com.dicoding.asclepius.database.PredictionHistory
@@ -39,6 +44,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         } else {
             showDetailNotFound()
         }
+
 
     }
 
@@ -77,7 +83,12 @@ class HistoryDetailActivity : AppCompatActivity() {
         binding.tvTime.text = "insertAt : $formattedDateTime"
 
         history.imagePath?.let {
-            binding.ivHistory.setImageURI(Uri.parse(it))
+            Log.d("Image URI", "showImage: $it")
+            val imageUri = Uri.parse(it)
+            // Load image using Glide library
+            Glide.with(this)
+                .load(imageUri)
+                .into(binding.ivHistory)
         } ?: run {
             binding.ivHistory.setImageDrawable(null)
         }
@@ -86,5 +97,6 @@ class HistoryDetailActivity : AppCompatActivity() {
     companion object {
         const val TAG = "HistoryDetailActivity"
         const val EXTRA_HISTORY_ID = "history_id"
+        private const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1001
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.bumptech.glide.Glide
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.application.PredictionHistoryApplication
 import com.dicoding.asclepius.database.PredictionHistory
@@ -31,12 +32,15 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val imageUriString = intent.getStringExtra(EXTRA_IMAGE_URI)
-        val imageUri = Uri.parse(imageUriString)
 
         // Inisialisasi ImageView dengan URI gambar
-        imageUri?.let {
+        imageUriString?.let {
             Log.d("Image URI", "showImage: $it")
-            binding.resultImage.setImageURI(it)
+            val imageUri = Uri.parse(it)
+            // Load image using Glide library
+            Glide.with(this)
+                .load(imageUri)
+                .into(binding.resultImage)
         }
 
         // Inisialisasi ImageClassifierHelper dan memproses gambar
@@ -70,7 +74,8 @@ class ResultActivity : AppCompatActivity() {
         )
 
         // Memproses gambar menggunakan ImageClassifierHelper
-        imageUri?.let { imageUri ->
+        imageUriString?.let {
+            val imageUri = Uri.parse(it)
             imageClassifierHelper.classifyStaticImage(imageUri)
         }
     }
