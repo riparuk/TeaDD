@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             val resultUri = UCrop.getOutput(data!!)
+            Log.d(TAG, "Current : ${currentImageUri.toString()}")
+            Log.d(TAG, "uCropped : ${resultUri.toString()}")
             resultUri?.let {
                 currentImageUri = it
                 showImage()
@@ -66,7 +68,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startUCrop(sourceUri: Uri) {
-        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image"))
+        // Buat file sementara dengan nama unik
+        val tempFile = createTempFile("cropped_image", ".jpg", cacheDir)
+        val destinationUri = Uri.fromFile(tempFile)
 
         UCrop.of(sourceUri, destinationUri)
             .start(this)
