@@ -33,6 +33,10 @@ class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHist
         super.onCreate(savedInstanceState)
         binding = ActivityPredictionHistoryBinding.inflate(layoutInflater)
 
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+
         setContentView(binding.root)
         showPredictionHistory()
         Log.d(TAG, "run showPredictionHistory")
@@ -47,16 +51,6 @@ class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHist
         historyViewModel.allHisory.observe(this) {
             it.let { adapter.submitList(it) }
         }
-
-
-//        val dataset = arrayOf("January", "February", "March")
-//        val customAdapter = PredictionHistoryListAdapter(dataset)
-//
-//        val layoutManager = LinearLayoutManager(this)
-//        binding.recyclerView.layoutManager = layoutManager
-//
-//        val recyclerView: RecyclerView = binding.recyclerView
-//        recyclerView.adapter = customAdapter
     }
 
     companion object {

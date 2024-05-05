@@ -21,7 +21,6 @@ class ArticlesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticlesBinding
     private lateinit var viewModel: ArticlesViewModel
     private lateinit var adapter: ArticlesAdapter
-    private val apiService = ApiConfig.getApiService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +28,10 @@ class ArticlesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(ArticlesViewModel::class.java)
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
 
         setupRecyclerView()
         observeViewModel()
