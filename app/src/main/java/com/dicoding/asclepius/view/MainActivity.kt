@@ -13,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -42,16 +44,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            val resultUri = UCrop.getOutput(data!!)
+            resultUri?.let {
+                currentImageUri = it
+                showImage()
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val cropError = UCrop.getError(data!!)
+            cropError?.let {
+                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
+
+    private fun startUCrop(sourceUri: Uri) {
+        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image"))
+
+        UCrop.of(sourceUri, destinationUri)
+            .start(this)
+    }
+
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            currentImageUri = uri
-            showImage()
+            startUCrop(uri)
         } else {
             Log.d("Photo Picker", "No media selected")
         }
