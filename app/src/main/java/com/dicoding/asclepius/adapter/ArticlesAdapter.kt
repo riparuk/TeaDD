@@ -9,7 +9,7 @@ import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ArticleRowItemBinding
 import com.dicoding.asclepius.networkapi.response.ArticlesItem
 
-class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
+class ArticlesAdapter(private val onItemClick: (ArticlesItem) -> Unit) : RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     private var articles: List<ArticlesItem> = ArrayList()
 
@@ -22,6 +22,10 @@ class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>(
             Glide.with(itemView.context)
                 .load(article.urlToImage)
                 .into(binding.ivArticle)
+
+            itemView.setOnClickListener {
+                onItemClick(article)
+            }
         }
     }
 

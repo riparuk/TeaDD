@@ -89,4 +89,7 @@ dependencies {
     // uCrop
     implementation("com.github.yalantis:ucrop:2.2.9")
 
+    // Browser
+    implementation("androidx.browser:browser:1.8.0")
+
 }

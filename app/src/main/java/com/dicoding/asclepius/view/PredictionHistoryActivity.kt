@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.asclepius.R
@@ -47,6 +49,15 @@ class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHist
         val adapter = HistoryListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                baseContext,
+                LinearLayoutManager(this).orientation
+            ).apply {
+                setDrawable(ContextCompat.getDrawable(this@PredictionHistoryActivity, R.drawable.divider)!!)
+            }
+        )
 
         historyViewModel.allHisory.observe(this) {
             it.let { adapter.submitList(it) }

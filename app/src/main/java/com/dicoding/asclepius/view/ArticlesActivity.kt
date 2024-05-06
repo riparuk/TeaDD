@@ -1,21 +1,19 @@
 package com.dicoding.asclepius.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.asclepius.R
 import com.dicoding.asclepius.adapter.ArticlesAdapter
 import com.dicoding.asclepius.databinding.ActivityArticlesBinding
-import com.dicoding.asclepius.networkapi.retrofit.ApiConfig
 import com.dicoding.asclepius.viewmodel.ArticlesViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
-import java.io.IOException
 
 class ArticlesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticlesBinding
@@ -58,9 +56,21 @@ class ArticlesActivity : AppCompatActivity() {
 
 
     private fun setupRecyclerView() {
-        adapter = ArticlesAdapter()
+        adapter = ArticlesAdapter { article ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(article.url))
+            startActivity(intent)
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
+
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                baseContext,
+                LinearLayoutManager(this).orientation
+            ).apply {
+                setDrawable(ContextCompat.getDrawable(this@ArticlesActivity, R.drawable.divider)!!)
+            }
+        )
     }
 
     private fun showLoading(isLoading: Boolean) {
