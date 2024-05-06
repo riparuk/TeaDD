@@ -3,6 +3,7 @@ package com.dicoding.asclepius.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -60,6 +61,9 @@ class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHist
         )
 
         historyViewModel.allHisory.observe(this) {
+            if (it.isEmpty()) {
+                showMessage("You don't have a prediction history yet")
+            }
             it.let { adapter.submitList(it) }
         }
     }
@@ -72,5 +76,14 @@ class PredictionHistoryActivity : AppCompatActivity(), HistoryListAdapter.OnHist
         val intent = Intent(this, HistoryDetailActivity::class.java)
         intent.putExtra(HistoryDetailActivity.EXTRA_HISTORY_ID, history.id)
         startActivity(intent)
+    }
+
+    private fun showMessage(message: String) {
+        if (message.isNotEmpty()) {
+            binding.tvMessage.text = message
+            binding.tvMessage.visibility = View.VISIBLE
+        } else {
+            binding.tvMessage.visibility = View.GONE
+        }
     }
 }

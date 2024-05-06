@@ -15,6 +15,7 @@
             android:id="@+id/ivHistory"
             android:layout_width="match_parent"
             android:layout_height="400dp"
+            android:layout_margin="16dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_place_holder"/>
 
@@ -22,28 +23,28 @@
             android:id="@+id/tvId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
             tools:text="ID : XX" />
 
         <TextView
             android:id="@+id/tvLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
             tools:text="Predict : label" />
 
         <TextView
             android:id="@+id/tvScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
             tools:text="Confident Score : 0.899" />
 
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
             tools:text="CreatedAt : 20/04/2024" />
 
     </LinearLayout>

@@ -74,9 +74,9 @@ class HistoryDetailActivity : AppCompatActivity() {
         // Implementasi tampilan detail berdasarkan data yang diperoleh dari ViewModel
         binding.tvId.text = "ID : ${history.id}"
         binding.tvLabel.text = "Prediction Result : ${history.predictionResult}"
-        binding.tvScore.text = "Confident Score : ${history.confidenceScore}"
-        binding.tvScore.text = NumberFormat.getPercentInstance()
+        val percentFormat = NumberFormat.getPercentInstance()
             .format(history.confidenceScore).trim()
+        binding.tvScore.text = "Confident Score : $percentFormat"
 
         // Convert insertedAt time to a readable date-time format
         val formattedDateTime = DateFormat.format("dd/MM/yyyy HH:mm:ss", Date(history.insertedAt))

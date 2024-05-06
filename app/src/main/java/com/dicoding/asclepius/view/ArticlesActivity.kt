@@ -50,7 +50,17 @@ class ArticlesActivity : AppCompatActivity() {
         viewModel.toastMessage.observe(this) { message ->
             message?.let {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                showMessage(message)
             }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        if (message.isNotEmpty()) {
+            binding.tvMessage.text = message
+            binding.tvMessage.visibility = View.VISIBLE
+        } else {
+            binding.tvMessage.visibility = View.GONE
         }
     }
 

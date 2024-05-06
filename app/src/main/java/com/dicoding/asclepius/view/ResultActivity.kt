@@ -64,6 +64,7 @@ class ResultActivity : AppCompatActivity() {
                             // Menampilkan hasil klasifikasi dan waktu inferensi
                             binding.resultText.text = "$displayResult\nInference Time: $inferenceTime ms"
                             saveToHistory(imageUriString.toString(), sortedCategories[0].label, sortedCategories[0].score)
+                            showToast("Prediction results stored in history!")
                             Log.d(TAG, "Result : ${imageUriString.toString()}, ${sortedCategories[0].label}, ${sortedCategories[0].score}")
                         } else {
                             binding.resultText.text = "Empty"
@@ -78,6 +79,10 @@ class ResultActivity : AppCompatActivity() {
             val imageUri = Uri.parse(it)
             imageClassifierHelper.classifyStaticImage(imageUri)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun saveToHistory(imageUriString: String, label: String, score: Float) {

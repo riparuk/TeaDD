@@ -26,7 +26,7 @@ abstract class PredictionHistoryDatabase : RoomDatabase() {
                     PredictionHistoryDatabase::class.java,
                     "prediction_history_database"
                 )
-                    .addCallback(HistoryDatabaseCallback(scope))
+//                    .addCallback(HistoryDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 instance
