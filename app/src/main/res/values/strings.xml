@@ -11,5 +11,10 @@
     <string name="image_processing_failed">Image classifier failed to initialize. See error logs for details</string>
     <string name="element_text">Prediction History</string>
     <string name="articles">Articles</string>
+    <string name="picture_holder">Picture Holder</string>
+    <string name="back_button">Back Button</string>
+    <string name="cancer_articles">Cancer Articles</string>
+    <string name="prediction_history">Prediction History</string>
+    <string name="button_to_history_activity">Button to history activity</string>
 
 </resources>

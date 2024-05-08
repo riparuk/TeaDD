@@ -1,16 +1,11 @@
 package com.dicoding.asclepius.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +13,8 @@ import com.bumptech.glide.Glide
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.PredictionHistoryRowItemBinding
-import com.dicoding.asclepius.view.HistoryDetailActivity
-import com.dicoding.asclepius.view.ResultActivity
 import java.text.NumberFormat
 import java.util.Date
-import kotlin.contracts.contract
 
 class HistoryListAdapter(private val listener: OnHistoryItemClickListener) : ListAdapter<PredictionHistory, HistoryListAdapter.HistoryViewHolder>(HistoryComparator()) {
 

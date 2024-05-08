@@ -14,6 +14,7 @@
         <ImageView
             android:id="@+id/result_image"
             android:layout_width="match_parent"
+            android:contentDescription="@string/picture_holder"
             android:layout_height="400dp"
             android:layout_margin="16dp"
             android:scaleType="fitCenter"
