@@ -18,7 +18,8 @@
             android:layout_margin="16dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_place_holder"
-            android:background="@color/whiteCalm"/>
+            android:background="@color/whiteCalm"
+            android:contentDescription="@string/picture_holder"/>
 
         <TextView
             android:id="@+id/tvId"
