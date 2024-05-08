@@ -1,5 +1,6 @@
 package com.dicoding.asclepius.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,11 +8,14 @@ import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.asclepius.R
 import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.PredictionHistoryRowItemBinding
 import com.dicoding.asclepius.view.HistoryDetailActivity
@@ -44,6 +48,15 @@ class HistoryListAdapter(private val listener: OnHistoryItemClickListener) : Lis
             binding.tvResult.text = data.predictionResult
             binding.tvScore.text = NumberFormat.getPercentInstance()
                 .format(data.confidenceScore).trim()
+
+            val context = binding.root.context
+
+            if (data.predictionResult == "Cancer") {
+                binding.tvResult.setTextColor(ContextCompat.getColor(context, R.color.red))
+            } else {
+                // Set default color for other cases
+                binding.tvResult.setTextColor(ContextCompat.getColor(context, R.color.secondary))
+            }
 
             // Convert insertedAt time to a readable date-time format
             val formattedDateTime = DateFormat.format("dd/MM/yyyy HH:mm:ss", Date(data.insertedAt))

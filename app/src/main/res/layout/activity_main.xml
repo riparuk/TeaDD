@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
+                android:background="@color/primary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="Articles"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/secondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivHistory"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +96,8 @@
         android:text="@string/gallery"
         app:layout_constraintBottom_toTopOf="@+id/analyzeButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/secondary" />
 
     <Button
         android:id="@+id/analyzeButton"
@@ -108,6 +109,7 @@
         android:text="@string/analyze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
