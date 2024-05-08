@@ -4,24 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.adapter.HistoryListAdapter
-import com.dicoding.asclepius.adapter.PredictionHistoryListAdapter
 import com.dicoding.asclepius.application.PredictionHistoryApplication
 import com.dicoding.asclepius.database.PredictionHistory
-import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.dicoding.asclepius.databinding.ActivityPredictionHistoryBinding
-import com.dicoding.asclepius.databinding.ActivityResultBinding
-import com.dicoding.asclepius.repository.PredictionHistoryRepository
 import com.dicoding.asclepius.viewmodel.HistoryViewModelFactory
 import com.dicoding.asclepius.viewmodel.PredictionHistoryViewModel
 

@@ -2,9 +2,7 @@ package com.dicoding.asclepius.helper
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
-import android.media.Image
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
@@ -17,17 +15,13 @@ import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.task.core.BaseOptions
-import org.tensorflow.lite.task.core.vision.ImageProcessingOptions
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
-import java.io.File
-import java.io.IOException
-
 
 class ImageClassifierHelper(
-    var threshold: Float = 0.1f,
-    var maxResults: Int = 3,
-    val modelName: String = "cancer_classification.tflite",
+    private var threshold: Float = 0.1f,
+    private var maxResults: Int = 3,
+    private val modelName: String = "cancer_classification.tflite",
     val context: Context,
     val classifierListener: ClassifierListener?
 ) {
@@ -58,9 +52,6 @@ class ImageClassifierHelper(
     }
 
     fun classifyStaticImage(imageUri: Uri) {
-        if (imageClassifier == null) {
-            setupImageClassifier()
-        }
 
         val imageProcessor = ImageProcessor.Builder()
             .add(ResizeOp(224, 224, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
@@ -84,7 +75,7 @@ class ImageClassifierHelper(
             val processedImage = imageProcessor.process(tensorImage)
 
             var inferenceTime = SystemClock.uptimeMillis()
-            val results = imageClassifier?.classify(processedImage)
+            val results = imageClassifier.classify(processedImage)
             inferenceTime = SystemClock.uptimeMillis() - inferenceTime
 
             if (results != null) {

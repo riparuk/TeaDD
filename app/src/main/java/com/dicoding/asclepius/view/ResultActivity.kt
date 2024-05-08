@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.dicoding.asclepius.R
 import com.dicoding.asclepius.application.PredictionHistoryApplication
 import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.ActivityResultBinding
@@ -97,6 +96,5 @@ class ResultActivity : AppCompatActivity() {
     companion object {
         const val TAG = "ResultActivity"
         const val EXTRA_IMAGE_URI = "extra_image_uri"
-        const val EXTRA_RESULT = "extra_result"
     }
 }

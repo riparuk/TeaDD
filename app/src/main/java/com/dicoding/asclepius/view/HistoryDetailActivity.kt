@@ -1,25 +1,16 @@
 package com.dicoding.asclepius.view
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
-import com.dicoding.asclepius.R
 import com.dicoding.asclepius.application.PredictionHistoryApplication
 import com.dicoding.asclepius.database.PredictionHistory
 import com.dicoding.asclepius.databinding.ActivityHistoryDetailBinding
-import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.dicoding.asclepius.viewmodel.HistoryViewModelFactory
 import com.dicoding.asclepius.viewmodel.PredictionHistoryViewModel
 import java.text.NumberFormat
@@ -97,6 +88,5 @@ class HistoryDetailActivity : AppCompatActivity() {
     companion object {
         const val TAG = "HistoryDetailActivity"
         const val EXTRA_HISTORY_ID = "history_id"
-        private const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1001
     }
 }

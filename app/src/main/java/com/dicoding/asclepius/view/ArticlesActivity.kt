@@ -25,7 +25,7 @@ class ArticlesActivity : AppCompatActivity() {
         binding = ActivityArticlesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(ArticlesViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ArticlesViewModel::class.java]
 
         binding.ivBack.setOnClickListener {
             finish()

@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object{
-        val API_KEY = "0d17ac8fe3334573b0531de69b564a26"
-        val BASE_URL = "https://newsapi.org"
+        private const val API_KEY = "0d17ac8fe3334573b0531de69b564a26"
+        private const val BASE_URL = "https://newsapi.org"
         fun getApiService(): ApiService {
             val client = OkHttpClient.Builder().addInterceptor { chain ->
                 val original = chain.request()

@@ -8,13 +8,11 @@ import kotlinx.coroutines.flow.Flow
 class PredictionHistoryRepository(private val predictionHistoryDao: PredictionHistoryDao) {
     val allHistory: Flow<List<PredictionHistory>> = predictionHistoryDao.getAllPredictionHistory()
 
-    @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(history: PredictionHistory) {
         predictionHistoryDao.insertPredictionHistory(history)
     }
 
-    @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun getHistoryById(id: Long): PredictionHistory? {
         return predictionHistoryDao.getPredictionHistoryById(id)
