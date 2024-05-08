@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.galleryButton.setOnClickListener { startGallery() }
-        binding.previewImageView.setOnClickListener { startGallery() }
+        binding.previewImageView.setOnClickListener {
+            currentImageUri?.let { uri ->
+                startUCrop(uri)
+            }
+        }
         binding.analyzeButton.setOnClickListener {
             currentImageUri?.let {
                 analyzeImage(it)
