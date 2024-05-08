@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var currentImageUri: Uri? = null
+    private var originalImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.previewImageView.setOnClickListener {
-            currentImageUri?.let { uri ->
+            originalImageUri?.let { uri ->
                 startUCrop(uri)
             }
         }
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
+            originalImageUri = uri
             startUCrop(uri)
         } else {
             Log.d("Photo Picker", "No media selected")
