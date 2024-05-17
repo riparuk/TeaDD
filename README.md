@@ -11,7 +11,7 @@ TeaDD is an Android application developed using Kotlin that helps in detecting d
 ## Screenshots
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot1.jpeg">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot2.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot3.jpeg">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot1.jpeg"> Home |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot2.jpeg"> Inference Result |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot3.jpeg"> History |
 
 ---
 
