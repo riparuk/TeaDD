@@ -9,10 +9,9 @@ TeaDD is an Android application developed using Kotlin that helps in detecting d
 - **Offline Capability**: Functions without an internet connection, making it suitable for use in remote locations.
 
 ## Screenshots
-
-![Screenshot1](screenshots/screenshot1.jpeg)
-![Screenshot2](screenshots/screenshot2.jpeg)
-![Screenshot3](screenshots/screenshot3.jpeg)
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot1.jpeg">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot2.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="screenshots/screenshot3.jpeg">|
 
 ---
 
