@@ -20,9 +20,6 @@ TeaDD is an Android application developed using Kotlin that helps in detecting d
 - Habil Nasution
 - Fanul Nastia
 
-## Project URL
-https://github.com/riparuk/TeaDD.git
-
 ## Video URL
 https://youtu.be/fW96eS4r8Ug
 
