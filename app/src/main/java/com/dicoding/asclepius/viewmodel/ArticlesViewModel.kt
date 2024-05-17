@@ -26,7 +26,7 @@ class ArticlesViewModel : ViewModel() {
         _isLoading.value = true // Menampilkan loading sebelum memulai panggilan API
         viewModelScope.launch {
             try {
-                val response = apiService.getTopHeadlines("cancer", "health", "en")
+                val response = apiService.getTopHeadlines("", "technology", "en")
                 if (response.isSuccessful) {
                     val articles = response.body()?.articles ?: emptyList()
                     val filteredArticles = articles.filter { it?.title != "[Removed]" } // Filter artikel yang tidak memiliki judul "[Removed]"

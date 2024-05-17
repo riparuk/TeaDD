@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Asclepius</string>
+    <string name="app_name">TeaDD</string>
     <string name="camera_x">CameraX</string>
     <string name="camera">Kamera</string>
     <string name="gallery">Galeri</string>
@@ -16,5 +16,6 @@
     <string name="cancer_articles">Cancer Articles</string>
     <string name="prediction_history">Prediction History</string>
     <string name="button_to_history_activity">Button to history activity</string>
+    <string name="tech_articles">Tech Articles</string>
 
 </resources>
