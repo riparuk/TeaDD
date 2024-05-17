@@ -2,6 +2,8 @@
 
 TeaDD is an Android application developed using Kotlin that helps in detecting diseases in tea plants. The app integrates a TensorFlow Lite model to analyze and identify different tea plant diseases, providing users with an easy and efficient way to maintain healthy tea crops. It also features a history prediction and works offline, making it an **excellent starter deploy for machine learning TensorFlow Lite models into mobile apps**.
 
+[Download to try the .apk here (v1.0.0-debug)](https://github.com/riparuk/TeaDD/releases/tag/v1.0.0-debug)
+
 ## Features
 
 - **Disease Detection**: Detects various diseases in tea plants using an integrated TensorFlow Lite model.
